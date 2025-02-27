@@ -25,4 +25,6 @@ export function PrivateLayout({
 	);
 }
 
-export default withAuth(PrivateLayout);
+export default function LayoutWrapper(props: { children: React.ReactNode }) {
+	return withAuth(PrivateLayout)(props);
+}
