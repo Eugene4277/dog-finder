@@ -7,7 +7,7 @@ export type LogoutFormState = {
 };
 
 export async function logoutAction(
-	state: LogoutFormState
+	_: LogoutFormState
 ): Promise<LogoutFormState> {
 	try {
 		const response = await dogsAPI.logout();
@@ -17,6 +17,8 @@ export async function logoutAction(
 		}
 		return { redirect: routes.login() };
 	} catch (error) {
+		console.log(error);
+
 		return { redirect: routes.login() };
 	}
 }

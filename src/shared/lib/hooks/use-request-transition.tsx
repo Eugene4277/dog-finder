@@ -15,6 +15,8 @@ export function useRequestTransition(): [
 			try {
 				await cb();
 			} catch (error) {
+				console.log(error);
+
 				clearLocalStorage();
 				router.push(routes.login());
 			}

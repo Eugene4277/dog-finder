@@ -25,11 +25,11 @@ export function MatchDialog({ isOpen, onClose, matchedDog }: MatchDialogProps) {
 				<DialogHeader>
 					<DialogTitle className='flex items-center gap-2 text-2xl'>
 						<PartyPopper className='h-6 w-6 text-primary' />
-						It's a Match!
+						It&apos;s a Match!
 					</DialogTitle>
 					<DialogDescription className='text-base'>
-						We've found the perfect companion for you! Meet your new
-						potential friend:
+						We&apos;ve found the perfect companion for you! Meet
+						your new potential friend:
 					</DialogDescription>
 				</DialogHeader>
 				<div className='mt-4'>
@@ -69,14 +69,14 @@ export function MatchDialog({ isOpen, onClose, matchedDog }: MatchDialogProps) {
 						</div>
 						<p className='text-sm text-muted-foreground pt-2'>
 							{matchedDog.name} would make a wonderful addition to
-							your family. They're eagerly waiting to meet you and
-							share countless happy moments together!
+							your family. They&apos;re eagerly waiting to meet
+							you and share countless happy moments together!
 						</p>
 					</div>
 				</div>
 				<DialogFooter>
 					<Button onClick={onClose} className='w-full'>
-						Thanks, Can't Wait to Meet {matchedDog.name}!
+						Thanks, Can&apos;t Wait to Meet {matchedDog.name}!
 					</Button>
 				</DialogFooter>
 			</DialogContent>

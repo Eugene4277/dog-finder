@@ -12,7 +12,7 @@ export function useLoginRedirect(formState: LoginFormState) {
 		if (formState.redirect) {
 			router.push(formState.redirect);
 		}
-	}, [formState]);
+	}, [formState, router]);
 
 	useEffect(() => {
 		const checkAuth = async () => {

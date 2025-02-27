@@ -6,8 +6,10 @@ import { isAuthenticated } from "@/kernel/api-client";
 import { AppLoader } from "@/shared/ui/app-loader";
 import { routes } from "@/kernel/routes";
 
-export function withAuth(WrappedComponent: React.ComponentType<any>) {
-	return function ProtectedComponent(props: any) {
+export function withAuth<T extends object>(
+	WrappedComponent: React.ComponentType<T>
+) {
+	return function ProtectedComponent(props: T) {
 		const router = useRouter();
 		const [isLoading, setIsLoading] = useState(true);
 

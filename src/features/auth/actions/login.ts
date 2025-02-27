@@ -19,7 +19,7 @@ const formDataSchema = z.object({
 });
 
 export async function loginAction(
-	state: LoginFormState,
+	_: LoginFormState,
 	formData: FormData
 ): Promise<LoginFormState> {
 	const data = Object.fromEntries(formData.entries());
@@ -62,6 +62,8 @@ export async function loginAction(
 			return loginFailedError;
 		}
 	} catch (error) {
+		console.log(error);
+
 		return loginFailedError;
 	}
 }

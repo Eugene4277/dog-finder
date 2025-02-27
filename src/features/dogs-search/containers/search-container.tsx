@@ -1,7 +1,5 @@
 "use client";
 
-import { AppLoader } from "@/shared/ui/app-loader";
-
 import { useFilters } from "../model/use-filters";
 import { useFavorites } from "../model/use-favorites";
 import { useMatch } from "../model/use-match";

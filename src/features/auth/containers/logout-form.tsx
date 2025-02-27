@@ -19,7 +19,7 @@ export function LogoutForm() {
 		if (formState.redirect) {
 			router.push(formState.redirect);
 		}
-	}, [formState]);
+	}, [formState, router]);
 
 	return (
 		<LogoutFormLayout

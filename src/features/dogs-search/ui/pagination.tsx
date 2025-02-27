@@ -2,7 +2,6 @@ import {
 	Pagination,
 	PaginationContent,
 	PaginationItem,
-	PaginationLink,
 	PaginationNext,
 	PaginationPrevious,
 } from "@/shared/ui/pagination";
