@@ -4,7 +4,7 @@ import { LogoutForm } from "@/features/auth/server";
 import { withAuth } from "@/shared/lib/HOCs/withAuth";
 import Image from "next/image";
 
-export function PrivateLayout({
+function PrivateLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
