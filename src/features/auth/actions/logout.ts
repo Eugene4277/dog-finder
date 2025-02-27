@@ -7,7 +7,7 @@ export type LogoutFormState = {
 };
 
 export async function logoutAction(
-	_: LogoutFormState
+	state: LogoutFormState
 ): Promise<LogoutFormState> {
 	try {
 		const response = await dogsAPI.logout();
@@ -15,10 +15,10 @@ export async function logoutAction(
 		if (response === "OK") {
 			clearLocalStorage();
 		}
-		return { redirect: routes.login() };
+		return { ...state, redirect: routes.login() };
 	} catch (error) {
 		console.log(error);
 
-		return { redirect: routes.login() };
+		return { ...state, redirect: routes.login() };
 	}
 }

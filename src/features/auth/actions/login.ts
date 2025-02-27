@@ -19,7 +19,7 @@ const formDataSchema = z.object({
 });
 
 export async function loginAction(
-	_: LoginFormState,
+	state: LoginFormState,
 	formData: FormData
 ): Promise<LoginFormState> {
 	const data = Object.fromEntries(formData.entries());
@@ -29,6 +29,7 @@ export async function loginAction(
 	if (!validated.success) {
 		const formattedErrors = validated.error.format();
 		return {
+			...state,
 			formData,
 			errors: {
 				name: formattedErrors.name?._errors.join(", "),
@@ -39,6 +40,7 @@ export async function loginAction(
 	}
 
 	const loginFailedError = {
+		...state,
 		formData,
 		errors: {
 			_errors: "Login failed. Please check your credentials.",
