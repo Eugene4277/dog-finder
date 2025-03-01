@@ -36,7 +36,9 @@ function DogsSearchLayout({
 						{zipFilter}
 						{sortDropdown}
 						{resultsPerPageDropdown}
-						<div className='flex gap-2'>{actions}</div>
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+							{actions}
+						</div>
 						{matchAction}
 					</div>
 				</div>
