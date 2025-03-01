@@ -1,9 +1,10 @@
+import { memo } from "react";
 import { Heart } from "lucide-react";
 import { Dog } from "@/kernel/api-client";
 import { Card, CardContent, CardFooter } from "@/shared/ui/card";
 import { Button } from "@/shared/ui/button";
 
-export function MainSection({
+export const MainSection = memo(function MainSection({
 	dogs,
 	favorites,
 	toggleFavorite,
@@ -64,4 +65,4 @@ export function MainSection({
 			)}
 		</>
 	);
-}
+});

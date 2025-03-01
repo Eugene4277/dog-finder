@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
 	getFavoritesFromLocalStorage,
@@ -19,7 +19,7 @@ export function useFavorites() {
 		setFavoritesToLocalStorage(favorites);
 	}, [favorites]);
 
-	const toggleFavorite = (dog: Dog) => {
+	const toggleFavorite = useCallback((dog: Dog) => {
 		setFavorites((prev) => {
 			const isFavorite = prev.some((fav) => fav.id === dog.id);
 			if (isFavorite) {
@@ -28,7 +28,7 @@ export function useFavorites() {
 				return [...prev, dog];
 			}
 		});
-	};
+	}, []);
 
 	const filterFavoriteDogs = (dogs: Dog[], appliedFilters: Filters) => {
 		if (appliedFilters.breeds.length > 0) {
