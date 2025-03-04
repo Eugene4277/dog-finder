@@ -56,50 +56,6 @@ export function DogSearchPage() {
 		<>
 			<DogsSearchLayout
 				isLoading={isPending || isMatchPending}
-				favoritesSwitch={
-					<FavoritesSwitch
-						pendingFilters={pendingFilters}
-						setPendingFilters={setPendingFilters}
-						favoritesCount={favorites.length}
-					/>
-				}
-				breedFilter={
-					<BreedFilter
-						breeds={breeds}
-						isOpen={openBreeds}
-						pendingFilters={pendingFilters}
-						removeBreed={removeBreed}
-						setOpenBreeds={setOpenBreeds}
-						setPendingFilters={setPendingFilters}
-					/>
-				}
-				zipFilter={
-					<ZipFilter
-						isOpen={openZipCodes}
-						pendingFilters={pendingFilters}
-						removeZipCode={removeZipCode}
-						setOpenZipCodes={setOpenZipCodes}
-						setPendingFilters={setPendingFilters}
-					/>
-				}
-				ageFilter={
-					<AgeFilter
-						pendingFilters={pendingFilters}
-						setPendingFilters={setPendingFilters}
-					/>
-				}
-				sortDropdown={
-					<SortDropdown
-						pendingFilters={pendingFilters}
-						setPendingFilters={setPendingFilters}
-					/>
-				}
-				resultsPerPageDropdown={
-					<ResultsPerPageDropdown
-						pendingFilters={pendingFilters}
-						setPendingFilters={setPendingFilters}
-					/>
-				}
 				actions={
 					<>
 						<ResetFiltersButton action={resetFilters} />
@@ -137,7 +93,40 @@ export function DogSearchPage() {
 						matchedDog={match}
 					/>
 				}
-			/>
+			>
+				<FavoritesSwitch
+					pendingFilters={pendingFilters}
+					setPendingFilters={setPendingFilters}
+					favoritesCount={favorites.length}
+				/>
+				<BreedFilter
+					breeds={breeds}
+					isOpen={openBreeds}
+					pendingFilters={pendingFilters}
+					removeBreed={removeBreed}
+					setOpenBreeds={setOpenBreeds}
+					setPendingFilters={setPendingFilters}
+				/>
+				<ZipFilter
+					isOpen={openZipCodes}
+					pendingFilters={pendingFilters}
+					removeZipCode={removeZipCode}
+					setOpenZipCodes={setOpenZipCodes}
+					setPendingFilters={setPendingFilters}
+				/>
+				<AgeFilter
+					pendingFilters={pendingFilters}
+					setPendingFilters={setPendingFilters}
+				/>
+				<SortDropdown
+					pendingFilters={pendingFilters}
+					setPendingFilters={setPendingFilters}
+				/>
+				<ResultsPerPageDropdown
+					pendingFilters={pendingFilters}
+					setPendingFilters={setPendingFilters}
+				/>
+			</DogsSearchLayout>
 		</>
 	);
 }
