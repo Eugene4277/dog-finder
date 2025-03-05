@@ -6,6 +6,7 @@ import {
 	SelectValue,
 } from "@/shared/ui/select";
 import { Filters } from "../model/use-filters";
+import { Label } from "@/shared/ui/label";
 
 export function ResultsPerPageDropdown({
 	pendingFilters,
@@ -16,7 +17,7 @@ export function ResultsPerPageDropdown({
 }) {
 	return (
 		<div className='space-y-2'>
-			<label className='text-sm font-medium'>Results per page</label>
+			<Label>Results per page</Label>
 			<Select
 				onValueChange={(value) =>
 					setPendingFilters({

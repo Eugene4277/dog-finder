@@ -6,6 +6,7 @@ import {
 	SelectValue,
 } from "@/shared/ui/select";
 import { Filters } from "../model/use-filters";
+import { Label } from "@/shared/ui/label";
 
 type SortOption = {
 	value: `${"breed" | "name" | "age"}:${"asc" | "desc"}`;
@@ -30,7 +31,7 @@ export function SortDropdown({
 }) {
 	return (
 		<div className='space-y-2'>
-			<label className='text-sm font-medium'>Sort By</label>
+			<Label>Sort By</Label>
 			<Select
 				onValueChange={(value) =>
 					setPendingFilters({

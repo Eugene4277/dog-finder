@@ -16,8 +16,8 @@ export function useMatch(favorites: Dog[]) {
 				(fav) => fav.id === matchResponse.match
 			);
 
-			setMatch((prev) => matchedDog ?? prev);
 			if (matchedDog) {
+				setMatch(matchedDog);
 				setMatchDialogOpen(true);
 			}
 		});

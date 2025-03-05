@@ -6,6 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/popover";
 import { Badge } from "@/shared/ui/badge";
 import { ChevronsUpDown, X } from "lucide-react";
 import { Filters } from "../model/use-filters";
+import { Label } from "@/shared/ui/label";
 
 export function ZipFilter({
 	pendingFilters,
@@ -22,7 +23,7 @@ export function ZipFilter({
 }) {
 	return (
 		<div className='space-y-2'>
-			<label className='text-sm font-medium'>Zip Codes</label>
+			<Label>Zip Codes</Label>
 			<Popover open={isOpen} onOpenChange={setOpenZipCodes}>
 				<PopoverTrigger asChild>
 					<Button

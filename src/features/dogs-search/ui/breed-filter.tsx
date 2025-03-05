@@ -15,6 +15,7 @@ import { ScrollArea } from "@/shared/ui/scroll-area";
 import { Check, ChevronsUpDown, X } from "lucide-react";
 import { cn } from "@/shared/lib/css";
 import { Filters } from "../model/use-filters";
+import { Label } from "@/shared/ui/label";
 
 export function BreedFilter({
 	pendingFilters,
@@ -33,7 +34,7 @@ export function BreedFilter({
 }) {
 	return (
 		<div className='space-y-2'>
-			<label className='text-sm font-medium'>Breeds</label>
+			<Label>Breeds</Label>
 			<Popover open={isOpen} onOpenChange={setOpenBreeds}>
 				<PopoverTrigger asChild>
 					<Button

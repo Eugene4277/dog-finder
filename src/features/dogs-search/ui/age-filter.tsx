@@ -1,5 +1,6 @@
 import { Input } from "@/shared/ui/input";
 import { Filters } from "../model/use-filters";
+import { Label } from "@/shared/ui/label";
 
 export function AgeFilter({
 	pendingFilters,
@@ -10,7 +11,7 @@ export function AgeFilter({
 }) {
 	return (
 		<div className='space-y-2'>
-			<label className='text-sm font-medium'>Age Range</label>
+			<Label>Age Range</Label>
 			<div className='grid grid-cols-2 gap-2'>
 				<Input
 					type='number'
