@@ -1,60 +1,35 @@
-import { Dog, dogsAPI } from "@/kernel/api-client";
-import { Filters } from "../model/use-filters";
-import { PaginationData } from "../model/use-pagination";
-import { getChunk } from "@/shared/lib/utils";
+import { DogDomain } from "@/entities/dog";
+import { DogFilters, PaginationData } from "../domain";
+import {
+	fetchDogsData,
+	fetchFavoriteDogsData,
+	getLocationZipCodes,
+} from "../services/dogs";
 
 export async function fetchDogs({
 	filters,
 	favorites,
-	filterFavoriteDogs,
 	setDogs,
 	setPaginationData,
 	activePage,
 	url,
 }: {
-	filters: Filters;
-	favorites: Dog[];
-	filterFavoriteDogs: (dogs: Dog[], appliedFilters: Filters) => Dog[];
-	setDogs: (dogs: Dog[]) => void;
+	filters: DogFilters;
+	favorites: DogDomain.Dog[];
+	setDogs: (dogs: DogDomain.Dog[]) => void;
 	setPaginationData: (data: PaginationData) => void;
 	activePage?: number;
 	url?: string;
 }) {
-	let filteredDogs: Dog[] = [];
-	let paginationResponseData: PaginationData;
+	const updatedFilters = {
+		...filters,
+		zipCodes: await getLocationZipCodes(filters),
+	};
 
-	if (!filters.showFavorites) {
-		const response = url
-			? await dogsAPI.dogsSearch(null, url)
-			: await dogsAPI.dogsSearch(filters);
-		paginationResponseData = {
-			total: response.total,
-			next: response.next,
-			prev: response.prev,
-			size: filters.size,
-		};
-		filteredDogs = await dogsAPI.dogs(response.resultIds);
-	} else {
-		const filteredFavoritesDogs = filterFavoriteDogs(favorites, filters);
+	const { dogs, pagination } = filters.showFavorites
+		? fetchFavoriteDogsData(favorites, updatedFilters, url, activePage)
+		: await fetchDogsData(updatedFilters, url);
 
-		paginationResponseData = {
-			total: filteredFavoritesDogs.length,
-			next: "next",
-			prev: "prev",
-			size: filters.size,
-		};
-
-		filteredDogs = getChunk(
-			filteredFavoritesDogs,
-			filters.size,
-			url && activePage
-				? url === "next"
-					? activePage + 1
-					: activePage - 1
-				: 1
-		);
-	}
-
-	setPaginationData(paginationResponseData);
-	setDogs(filteredDogs);
+	setPaginationData(pagination);
+	setDogs(dogs);
 }

@@ -19,7 +19,7 @@ export function PaginationSection({
 }) {
 	return (
 		<>
-			{totalPages ? (
+			{totalPages > 1 ? (
 				<Pagination>
 					<PaginationContent>
 						<PaginationItem>

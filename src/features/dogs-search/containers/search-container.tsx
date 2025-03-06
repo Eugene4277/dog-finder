@@ -1,6 +1,6 @@
 "use client";
 
-import { useFilters } from "../model/use-filters";
+import { useDogFilters } from "../model/use-dog-filters";
 import { useFavorites } from "../model/use-favorites";
 import { useMatch } from "../model/use-match";
 
@@ -13,7 +13,7 @@ import { ResetFiltersButton } from "../ui/reset-filters-button";
 
 import { FavoritesSwitch } from "../ui/favorites-switch";
 import { BreedFilter } from "../ui/breed-filter";
-import { ZipFilter } from "../ui/zip-filter";
+import { LocationFilter } from "../ui/location-filter";
 import { AgeFilter } from "../ui/age-filter";
 import { SortDropdown } from "../ui/sort-dropdown";
 import { ResultsPerPageDropdown } from "../ui/results-per-page-dropdown";
@@ -22,14 +22,14 @@ import { PaginationSection } from "../ui/pagination";
 import { MatchDialog } from "../ui/match-dialog";
 
 export function DogSearchPage() {
-	const { favorites, toggleFavorite, filterFavoriteDogs } = useFavorites();
+	const { favorites, toggleFavorite } = useFavorites();
 	const {
 		dogs,
 		breeds,
 		pendingFilters,
 		hasUnappliedChanges,
 		openBreeds,
-		openZipCodes,
+		openStates,
 		activePage,
 		totalPages,
 		isPending,
@@ -38,17 +38,17 @@ export function DogSearchPage() {
 		setPendingFilters,
 		setOpenBreeds,
 		removeBreed,
-		setOpenZipCodes,
-		removeZipCode,
+		setOpenStates,
+		removeState,
 		goToNextPage,
 		goToPrevPage,
-	} = useFilters(favorites, filterFavoriteDogs);
+	} = useDogFilters(favorites);
 
 	const {
 		match,
 		matchDialogOpen,
 		isMatchPending,
-		setMatchDialogOpen,
+		closeMatchDialog,
 		generateMatch,
 	} = useMatch(favorites);
 
@@ -89,7 +89,7 @@ export function DogSearchPage() {
 				matchDialog={
 					<MatchDialog
 						isOpen={matchDialogOpen}
-						onClose={() => setMatchDialogOpen(false)}
+						onClose={() => closeMatchDialog()}
 						matchedDog={match}
 					/>
 				}
@@ -107,19 +107,19 @@ export function DogSearchPage() {
 					setOpenBreeds={setOpenBreeds}
 					setPendingFilters={setPendingFilters}
 				/>
-				<ZipFilter
-					isOpen={openZipCodes}
-					pendingFilters={pendingFilters}
-					removeZipCode={removeZipCode}
-					setOpenZipCodes={setOpenZipCodes}
-					setPendingFilters={setPendingFilters}
-				/>
 				<AgeFilter
 					pendingFilters={pendingFilters}
 					setPendingFilters={setPendingFilters}
 				/>
 				<SortDropdown
 					pendingFilters={pendingFilters}
+					setPendingFilters={setPendingFilters}
+				/>
+				<LocationFilter
+					isOpen={openStates}
+					pendingFilters={pendingFilters}
+					removeState={removeState}
+					setOpenStates={setOpenStates}
 					setPendingFilters={setPendingFilters}
 				/>
 				<ResultsPerPageDropdown

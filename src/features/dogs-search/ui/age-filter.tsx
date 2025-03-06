@@ -1,13 +1,13 @@
 import { Input } from "@/shared/ui/input";
-import { Filters } from "../model/use-filters";
 import { Label } from "@/shared/ui/label";
+import { DogFilters } from "../domain";
 
 export function AgeFilter({
 	pendingFilters,
 	setPendingFilters,
 }: {
-	pendingFilters: Filters;
-	setPendingFilters: (filters: Filters) => void;
+	pendingFilters: DogFilters;
+	setPendingFilters: (filters: DogFilters) => void;
 }) {
 	return (
 		<div className='space-y-2'>

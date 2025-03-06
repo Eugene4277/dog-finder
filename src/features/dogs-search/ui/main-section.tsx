@@ -1,17 +1,17 @@
 import { memo } from "react";
 import { Heart } from "lucide-react";
-import { Dog } from "@/kernel/api-client";
 import { Card, CardContent, CardFooter } from "@/shared/ui/card";
 import { Button } from "@/shared/ui/button";
+import { DogDomain } from "@/entities/dog";
 
 export const MainSection = memo(function MainSection({
 	dogs,
 	favorites,
 	toggleFavorite,
 }: {
-	dogs: Dog[];
-	favorites: Dog[];
-	toggleFavorite: (dog: Dog) => void;
+	dogs: DogDomain.Dog[];
+	favorites: DogDomain.Dog[];
+	toggleFavorite: (dog: DogDomain.Dog) => void;
 }) {
 	return (
 		<>
@@ -34,7 +34,9 @@ export const MainSection = memo(function MainSection({
 									</h2>
 									<p>Breed: {dog.breed}</p>
 									<p>Age: {dog.age} years</p>
-									<p>Zip Code: {dog.zip_code}</p>
+									<p>City: {dog.location.city}</p>
+									<p>State: {dog.location.state}</p>
+									<p>Zip Code: {dog.location.zip_code}</p>
 								</CardContent>
 								<CardFooter>
 									<Button

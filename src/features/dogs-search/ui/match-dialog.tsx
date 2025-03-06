@@ -8,7 +8,7 @@ import {
 } from "@/shared/ui/dialog";
 import { Button } from "@/shared/ui/button";
 import { PartyPopper } from "lucide-react";
-import { Dog } from "@/kernel/api-client";
+import { Dog } from "@/entities/dog/domain";
 
 interface MatchDialogProps {
 	isOpen: boolean;
@@ -63,7 +63,10 @@ export function MatchDialog({ isOpen, onClose, matchedDog }: MatchDialogProps) {
 									Location
 								</p>
 								<p className='font-medium'>
-									ZIP: {matchedDog.zip_code}
+									City: {matchedDog.location.city}
+								</p>
+								<p className='font-medium'>
+									State: {matchedDog.location.state}
 								</p>
 							</div>
 						</div>

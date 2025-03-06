@@ -14,8 +14,8 @@ import { Badge } from "@/shared/ui/badge";
 import { ScrollArea } from "@/shared/ui/scroll-area";
 import { Check, ChevronsUpDown, X } from "lucide-react";
 import { cn } from "@/shared/lib/css";
-import { Filters } from "../model/use-filters";
 import { Label } from "@/shared/ui/label";
+import { DogFilters } from "../domain";
 
 export function BreedFilter({
 	pendingFilters,
@@ -25,8 +25,8 @@ export function BreedFilter({
 	removeBreed,
 	setOpenBreeds,
 }: {
-	pendingFilters: Filters;
-	setPendingFilters: (filters: Filters) => void;
+	pendingFilters: DogFilters;
+	setPendingFilters: (filters: DogFilters) => void;
 	isOpen: boolean;
 	breeds: string[];
 	removeBreed: (breed: string) => void;

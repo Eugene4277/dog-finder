@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DogId } from "@/kernel/ids";
+import { DogId, ZipCode } from "@/kernel/ids";
 
 const apiClient = axios.create({
 	baseURL: "https://frontend-take-home-service.fetch.com",
@@ -19,7 +19,7 @@ export type DogsMatchData = string[];
 
 export type DogsSearchData = {
 	breeds?: string[];
-	zipCodes?: string[];
+	zipCodes?: ZipCode[];
 	ageMin?: number;
 	ageMax?: number;
 
@@ -28,7 +28,7 @@ export type DogsSearchData = {
 	sort?: `${"breed" | "name" | "age"}:${"asc" | "desc"}`;
 };
 
-export type LocationsData = string[];
+export type LocationsData = ZipCode[];
 
 export type LocationsSearchData = {
 	city?: string;
@@ -51,12 +51,12 @@ export type LoginResponseData = string;
 
 export type LogoutResponseData = string;
 
-export type Dog = {
+export type DogResponse = {
 	id: DogId;
 	img: string;
 	name: string;
 	age: number;
-	zip_code: string;
+	zip_code: ZipCode;
 	breed: string;
 };
 
@@ -75,7 +75,7 @@ export type DogsMatchResponseData = {
 
 // Locations-related responses
 export type Location = {
-	zip_code: string;
+	zip_code: ZipCode;
 	latitude: number;
 	longitude: number;
 	city: string;
@@ -100,7 +100,7 @@ const dogsAPI = {
 	logout: (): Promise<LogoutResponseData> =>
 		apiClient.post("/auth/logout").then((response) => response.data),
 
-	dogs: (data: DogsData): Promise<Dog[]> =>
+	dogs: (data: DogsData): Promise<DogResponse[]> =>
 		apiClient.post("/dogs", data).then((response) => response.data),
 
 	dogsBreeds: (): Promise<DogsBreedsResponseData> =>
@@ -124,7 +124,7 @@ const dogsAPI = {
 		params: LocationsSearchData
 	): Promise<LocationsSearchResponseData> =>
 		apiClient
-			.get("/locations/search", { params })
+			.post("/locations/search", params)
 			.then((response) => response.data),
 };
 

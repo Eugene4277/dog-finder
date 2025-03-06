@@ -1,53 +1,36 @@
 import { useEffect, useState } from "react";
-import { Dog, dogsAPI } from "@/kernel/api-client";
+import { dogsAPI } from "@/kernel/api-client";
 import { usePagination } from "./use-pagination";
 import { fetchDogs } from "../actions/fetch-dogs";
 import { useRequestTransition } from "@/shared/lib/hooks/use-request-transition";
+import { DogDomain } from "@/entities/dog";
+import { DogFilters } from "../domain";
 
-export type Filters = {
-	breeds: string[];
-	zipCodes: string[];
-	size: number;
-	sort: `${"breed" | "name" | "age"}:${"asc" | "desc"}`;
-	ageMin?: number;
-	ageMax?: number;
-	from?: string;
-	showFavorites: boolean;
-};
-
-export type PaginationData = {
-	total: number;
-	size: number;
-	next?: string;
-	prev?: string;
-};
-
-const initalFilters: Filters = {
+const initalFilters: DogFilters = {
 	breeds: [],
 	zipCodes: [],
 	size: 25,
 	sort: "breed:asc",
 	showFavorites: false,
+	city: "",
+	states: [],
 };
 
-export function useFilters(
-	favorites: Dog[],
-	filterFavoriteDogs: (dogs: Dog[], appliedFilters: Filters) => Dog[]
-) {
-	const [dogs, setDogs] = useState<Dog[]>([]);
+export function useDogFilters(favorites: DogDomain.Dog[]) {
+	const [dogs, setDogs] = useState<DogDomain.Dog[]>([]);
 	const [breeds, setBreeds] = useState<string[]>([]);
 
 	const [appliedFilters, setAppliedFilters] =
-		useState<Filters>(initalFilters);
+		useState<DogFilters>(initalFilters);
 
 	const [pendingFilters, setPendingFilters] =
-		useState<Filters>(appliedFilters);
+		useState<DogFilters>(appliedFilters);
 
 	const hasUnappliedChanges =
 		JSON.stringify(pendingFilters) !== JSON.stringify(appliedFilters);
 
 	const [openBreeds, setOpenBreeds] = useState(false);
-	const [openZipCodes, setOpenZipCodes] = useState(false);
+	const [openStates, setOpenStates] = useState(false);
 
 	const [isFiltersPending, executeSafeTransition] = useRequestTransition();
 
@@ -59,7 +42,7 @@ export function useFilters(
 		goToNextPage,
 		goToPrevPage,
 		isPagintaionPending,
-	} = usePagination(pendingFilters, favorites, filterFavoriteDogs, setDogs);
+	} = usePagination(pendingFilters, favorites, setDogs);
 
 	const fetchDogBreeds = async () => {
 		const fetchedBreeds = await dogsAPI.dogsBreeds();
@@ -75,7 +58,6 @@ export function useFilters(
 				setDogs,
 				setPaginationData,
 				favorites,
-				filterFavoriteDogs,
 			});
 		});
 	};
@@ -89,7 +71,6 @@ export function useFilters(
 				setDogs,
 				setPaginationData,
 				favorites,
-				filterFavoriteDogs,
 			});
 		});
 	};
@@ -101,10 +82,10 @@ export function useFilters(
 		}));
 	};
 
-	const removeZipCode = (zipCode: string) => {
+	const removeState = (state: string) => {
 		setPendingFilters((prev) => ({
 			...prev,
-			zipCodes: prev.zipCodes.filter((z) => z !== zipCode),
+			states: prev.states.filter((s) => s !== state),
 		}));
 	};
 
@@ -116,24 +97,23 @@ export function useFilters(
 				setDogs,
 				setPaginationData,
 				favorites,
-				filterFavoriteDogs,
 			});
 		});
 	}, []);
 
 	return {
-		removeBreed,
-		removeZipCode,
 		applyFilters,
 		resetFilters,
 		hasUnappliedChanges,
 		pendingFilters,
 		setPendingFilters,
 		dogs,
+		removeBreed,
 		openBreeds,
 		setOpenBreeds,
-		openZipCodes,
-		setOpenZipCodes,
+		removeState,
+		openStates,
+		setOpenStates,
 		breeds,
 		isPending: isPagintaionPending || isFiltersPending,
 		activePage,

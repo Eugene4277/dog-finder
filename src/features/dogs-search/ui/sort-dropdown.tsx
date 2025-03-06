@@ -5,8 +5,8 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/shared/ui/select";
-import { Filters } from "../model/use-filters";
 import { Label } from "@/shared/ui/label";
+import { DogFilters } from "../domain";
 
 type SortOption = {
 	value: `${"breed" | "name" | "age"}:${"asc" | "desc"}`;
@@ -26,8 +26,8 @@ export function SortDropdown({
 	pendingFilters,
 	setPendingFilters,
 }: {
-	pendingFilters: Filters;
-	setPendingFilters: (filters: Filters) => void;
+	pendingFilters: DogFilters;
+	setPendingFilters: (filters: DogFilters) => void;
 }) {
 	return (
 		<div className='space-y-2'>

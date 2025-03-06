@@ -1,9 +1,10 @@
-import { Dog, dogsAPI } from "@/kernel/api-client";
+import { DogDomain } from "@/entities/dog";
+import { dogsAPI } from "@/kernel/api-client";
 import { useRequestTransition } from "@/shared/lib/hooks/use-request-transition";
 import { useState } from "react";
 
-export function useMatch(favorites: Dog[]) {
-	const [match, setMatch] = useState<Dog | null>(null);
+export function useMatch(favorites: DogDomain.Dog[]) {
+	const [match, setMatch] = useState<DogDomain.Dog | null>(null);
 	const [matchDialogOpen, setMatchDialogOpen] = useState(false);
 	const [isPending, executeSafeTransition] = useRequestTransition();
 	const generateMatch = async () => {
@@ -23,11 +24,15 @@ export function useMatch(favorites: Dog[]) {
 		});
 	};
 
+	const closeMatchDialog = () => {
+		setMatchDialogOpen(false);
+	};
+
 	return {
-		generateMatch,
-		match,
-		setMatchDialogOpen,
-		matchDialogOpen,
 		isMatchPending: isPending,
+		match,
+		matchDialogOpen,
+		generateMatch,
+		closeMatchDialog,
 	};
 }

@@ -1,21 +1,13 @@
 import { useState } from "react";
-import { Dog } from "@/kernel/api-client";
-import { Filters } from "./use-filters";
 import { fetchDogs } from "../actions/fetch-dogs";
 import { useRequestTransition } from "@/shared/lib/hooks/use-request-transition";
-
-export type PaginationData = {
-	total: number;
-	size: number;
-	next?: string;
-	prev?: string;
-};
+import { DogDomain } from "@/entities/dog";
+import { PaginationData, DogFilters } from "../domain";
 
 export function usePagination(
-	filters: Filters,
-	favorites: Dog[],
-	filterFavoriteDogs: (dogs: Dog[], appliedFilters: Filters) => Dog[],
-	setDogs: (dogs: Dog[]) => void
+	filters: DogFilters,
+	favorites: DogDomain.Dog[],
+	setDogs: (dogs: DogDomain.Dog[]) => void
 ) {
 	const [isPending, executeSafeTransition] = useRequestTransition();
 	const [paginationData, setPaginationData] = useState<PaginationData>({
@@ -37,7 +29,6 @@ export function usePagination(
 					setDogs,
 					setPaginationData,
 					favorites,
-					filterFavoriteDogs,
 					url: paginationData.next,
 					activePage,
 				});
@@ -54,7 +45,6 @@ export function usePagination(
 					setDogs,
 					setPaginationData,
 					favorites,
-					filterFavoriteDogs,
 					url: paginationData.prev,
 					activePage,
 				});

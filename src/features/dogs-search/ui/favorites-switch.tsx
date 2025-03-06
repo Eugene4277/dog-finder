@@ -1,14 +1,14 @@
 import { Label } from "@/shared/ui/label";
-import { Filters } from "../model/use-filters";
 import { Switch } from "@/shared/ui/switch";
+import { DogFilters } from "../domain";
 
 export function FavoritesSwitch({
 	pendingFilters,
 	setPendingFilters,
 	favoritesCount,
 }: {
-	pendingFilters: Filters;
-	setPendingFilters: (filters: Filters) => void;
+	pendingFilters: DogFilters;
+	setPendingFilters: (filters: DogFilters) => void;
 	favoritesCount: number;
 }) {
 	return (
