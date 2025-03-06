@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { isAuthenticated } from "@/kernel/api-client";
+import { dogsAPI } from "@/kernel/api-client";
 import { AppLoader } from "@/shared/ui/app-loader";
 import { routes } from "@/kernel/routes";
 
@@ -17,7 +17,7 @@ export function withAuth<T extends object>(
 			const checkAuth = async () => {
 				let authStatus = null;
 				try {
-					authStatus = await isAuthenticated();
+					authStatus = await dogsAPI.isAuthenticated();
 				} catch (error) {
 					console.log(error);
 				} finally {

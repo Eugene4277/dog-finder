@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { LoginFormState } from "../actions/login";
 import { useRouter } from "next/navigation";
-import { isAuthenticated } from "@/kernel/api-client";
+import { dogsAPI } from "@/kernel/api-client";
 import { routes } from "@/kernel/routes";
 
 export function useLoginRedirect(formState: LoginFormState) {
@@ -18,7 +18,7 @@ export function useLoginRedirect(formState: LoginFormState) {
 		const checkAuth = async () => {
 			let authStatus = null;
 			try {
-				authStatus = await isAuthenticated();
+				authStatus = await dogsAPI.isAuthenticated();
 			} catch (error) {
 				console.log(error);
 			} finally {

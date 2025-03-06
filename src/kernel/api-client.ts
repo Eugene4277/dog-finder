@@ -126,19 +126,19 @@ const dogsAPI = {
 		apiClient
 			.post("/locations/search", params)
 			.then((response) => response.data),
-};
 
-const isAuthenticated = async () => {
-	try {
-		const response = await dogsAPI.dogsBreeds();
+	isAuthenticated: async (): Promise<boolean> => {
+		try {
+			const response = await dogsAPI.dogsBreeds();
 
-		return Array.isArray(response);
-	} catch (error) {
-		if (axios.isAxiosError(error) && error.response?.status === 401) {
+			return Array.isArray(response);
+		} catch (error) {
+			if (axios.isAxiosError(error) && error.response?.status === 401) {
+				return false;
+			}
 			return false;
 		}
-		return false;
-	}
+	},
 };
 
-export { apiClient, dogsAPI, isAuthenticated };
+export { apiClient, dogsAPI };
