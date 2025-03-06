@@ -1,4 +1,4 @@
-import { clearLocalStorage } from "@/kernel/local-storage";
+import { clearLocalStorage } from "@/shared/lib/local-storage";
 import { routes } from "@/kernel/routes";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";

@@ -1,5 +1,5 @@
 import { dogsAPI } from "@/kernel/api-client";
-import { localStorageItemKeyMap } from "@/kernel/local-storage";
+import { localStorageItemKeyMap } from "@/shared/lib/local-storage";
 import { routes } from "@/kernel/routes";
 import { z } from "zod";
 

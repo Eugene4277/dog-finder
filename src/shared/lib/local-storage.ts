@@ -1,15 +1,15 @@
-export const localStorageItemKeyMap = {
+const localStorageItemKeyMap = {
 	userName: "userName",
 	userEmailEncoded: "userEmailEncoded",
 	dogFavorites: "dogFavorites",
 };
 
-export const clearLocalStorage = () => {
+const clearLocalStorage = () => {
 	localStorage.removeItem(localStorageItemKeyMap.userEmailEncoded);
 	localStorage.removeItem(localStorageItemKeyMap.userName);
 };
 
-export const getFavoritesFromLocalStorage = (): [] => {
+const getFavoritesFromLocalStorage = (): [] => {
 	const dogFavorites = localStorage.getItem(
 		localStorageItemKeyMap.dogFavorites
 	);
@@ -24,7 +24,7 @@ export const getFavoritesFromLocalStorage = (): [] => {
 	);
 };
 
-export const setFavoritesToLocalStorage = <T>(favorites: T[]) => {
+const setFavoritesToLocalStorage = <T>(favorites: T[]) => {
 	const dogFavorites = localStorage.getItem(
 		localStorageItemKeyMap.dogFavorites
 	);
@@ -48,4 +48,11 @@ export const setFavoritesToLocalStorage = <T>(favorites: T[]) => {
 			);
 		}
 	}
+};
+
+export {
+	localStorageItemKeyMap,
+	clearLocalStorage,
+	getFavoritesFromLocalStorage,
+	setFavoritesToLocalStorage,
 };

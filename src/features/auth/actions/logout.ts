@@ -1,6 +1,6 @@
 import { routes } from "@/kernel/routes";
 import { dogsAPI } from "@/kernel/api-client";
-import { clearLocalStorage } from "@/kernel/local-storage";
+import { clearLocalStorage } from "@/shared/lib/local-storage";
 
 export type LogoutFormState = {
 	redirect?: string;

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
 	getFavoritesFromLocalStorage,
 	setFavoritesToLocalStorage,
-} from "@/kernel/local-storage";
+} from "@/shared/lib/local-storage";
 import { DogDomain } from "@/entities/dog";
 
 export function useFavorites() {

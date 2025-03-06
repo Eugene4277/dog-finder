@@ -1,6 +1,6 @@
 "use client";
 
-import { localStorageItemKeyMap } from "@/kernel/local-storage";
+import { localStorageItemKeyMap } from "@/shared/lib/local-storage";
 import { withLoader } from "@/shared/lib/HOCs/withLoader";
 
 export function LogoutFormLayout({
