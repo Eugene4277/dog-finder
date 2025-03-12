@@ -25,9 +25,9 @@ export function PaginationSection({
 						<PaginationItem>
 							<PaginationPrevious onClick={goToPreviuosPage} />
 						</PaginationItem>
-						<span>
+						<PaginationItem className='cursor-default'>
 							Page {activePage} of {totalPages}
-						</span>
+						</PaginationItem>
 						<PaginationItem>
 							<PaginationNext onClick={goToNextPage} />
 						</PaginationItem>
