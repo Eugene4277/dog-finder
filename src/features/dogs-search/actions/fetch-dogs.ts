@@ -26,7 +26,7 @@ export async function fetchDogs({
 		zipCodes: await getLocationZipCodes(filters),
 	};
 
-	const { dogs, pagination } = filters.showFavorites
+	const { dogs, pagination } = updatedFilters.showFavorites
 		? fetchFavoriteDogsData(favorites, updatedFilters, url, activePage)
 		: await fetchDogsData(updatedFilters, url);
 
