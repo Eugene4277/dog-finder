@@ -93,7 +93,7 @@ export type LocationsSearchResponseData = {
 	total: number;
 };
 
-const dogsAPI = {
+export const dogsAPI = {
 	login: (data: LoginData): Promise<LoginResponseData> =>
 		apiClient.post("/auth/login", data).then((response) => response.data),
 
@@ -140,5 +140,3 @@ const dogsAPI = {
 		}
 	},
 };
-
-export { apiClient, dogsAPI };
